@@ -1,0 +1,4 @@
+bazel-bin
+bazel-smoke_test_basics
+bazel-out
+bazel-testlogs

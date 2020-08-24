@@ -1,0 +1,33 @@
+workspace(name = "smoke_test_markdown_deps")
+
+local_repository(
+    name = "dwtj_rules_hugo",
+    path = "../../..",
+)
+
+# CONFIGURE `@dwtj_rules_hugo` ###############################################
+
+load("@dwtj_rules_hugo//hugo:repositories.bzl", "local_hugo_repository")
+
+local_hugo_repository(name = "local_hugo")
+
+load("@local_hugo//:defs.bzl", "register_hugo_toolchain")
+
+register_hugo_toolchain()
+
+# CONFIGURE `@dwtj_rules_markdown` FOR AUTOMATIC LINTING ######################
+
+load("@dwtj_rules_hugo//test:workspaces/external_repositories.bzl", "fetch_dwtj_rules_markdown")
+
+fetch_dwtj_rules_markdown()
+
+load("@dwtj_rules_markdown//markdown:defs.bzl", "local_markdownlint_external_repository")
+
+local_markdownlint_external_repository(
+    name = "local_markdownlint",
+    config = "@//:.markdownlint.json",
+)
+
+load("@local_markdownlint//:defs.bzl", "register_local_markdownlint_toolchain")
+
+register_local_markdownlint_toolchain()
