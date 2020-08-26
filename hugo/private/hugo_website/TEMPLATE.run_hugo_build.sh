@@ -1,16 +1,19 @@
 # This file was instantiated from a template with the following substitutions:
 #
 # - HUGO_EXEC: {HUGO_EXEC}
-# - CONFIG_FILE: {CONFIG_FILE}
-# - WEBSITE_BUILD_DIR: {WEBSITE_BUILD_DIR}
+# - HUGO_SOURCE_DIR: {HUGO_SOURCE_DIR}
 # - WEBSITE_ARCHIVE: {WEBSITE_ARCHIVE}
 
 set -e
 
-mkdir -p "{WEBSITE_BUILD_DIR}"
+HUGO_DEFAULT_DESTINATION_DIR="{HUGO_SOURCE_DIR}/public"
+EXECROOT="$PWD"
 
-"{HUGO_EXEC}" \
-    --config="{CONFIG_FILE}" \
-    --destination="{WEBSITE_BUILD_DIR}"
+"{HUGO_EXEC}" --source="{HUGO_SOURCE_DIR}"
 
-tar --create --gzip --file "{WEBSITE_ARCHIVE}" --directory "{WEBSITE_BUILD_DIR}" .
+cd "$EXECROOT"
+tar --create --gzip \
+    --file "{WEBSITE_ARCHIVE}" \
+    --directory "$HUGO_DEFAULT_DESTINATION_DIR" \
+    .
+

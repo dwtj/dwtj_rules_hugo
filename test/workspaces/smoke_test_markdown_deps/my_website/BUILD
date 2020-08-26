@@ -3,13 +3,13 @@ load("@dwtj_rules_markdown//markdown:defs.bzl", "markdown_library")
 
 hugo_website(
     name = "my_website",
-    srcs = ["index.md"],
-    config = "config.yml",
+    srcs = [
+        "content/hello.md",
+        "config.yml",
+    ],
 )
 
 markdown_library(
-    name = "some_markdown",
-    srcs = [
-        "index.md",
-    ],
+    name = "hello",
+    srcs = ["content/hello.md"],
 )
