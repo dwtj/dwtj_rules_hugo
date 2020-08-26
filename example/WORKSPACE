@@ -4,8 +4,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # CONFIGURE `@dwtj_rules_hugo` ###############################################
 
-DWTJ_RULES_HUGO_SHA256 = "f0e29fd0ae7913b4770a194f3b5be6d4560be4a5c8a9241e065ef97c1952d9bc"
-DWTJ_RULES_HUGO_COMMIT = "25fd6a279e80c58c0c25d33196e6558cbe7ac628"
+DWTJ_RULES_HUGO_SHA256 = "18e0501698993530e23bc7988a6efb7fd8d890c5e1245323dd09f0022805bf9f"
+DWTJ_RULES_HUGO_COMMIT = "93e348faebdf3ef8a051789174cead5f99a28ce8"
 
 http_archive(
     name = "dwtj_rules_hugo",
