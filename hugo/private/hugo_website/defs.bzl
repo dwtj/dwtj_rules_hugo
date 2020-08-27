@@ -11,7 +11,10 @@ HugoWebsiteInfo = provider(
 _HUGO_TOOLCHAIN_TYPE = "@dwtj_rules_hugo//hugo/toolchains/hugo_toolchain:toolchain_type"
 
 def _build_script_name(ctx):
-    return ctx.attr.name + ".hugo_website.sh"
+    return ctx.attr.name + ".hugo_build.sh"
+
+def _server_script_name(ctx):
+    return ctx.attr.name + ".hugo_server.sh"
 
 def _website_archive_name(ctx):
     return ctx.attr.name + ".tar.gz"
@@ -37,6 +40,7 @@ def _hugo_src_dir_name(ctx):
 #    file's location relative to the package which declared this `hugo_website`.
 # 4. We instantiate and run a script which executes `hugo` and `tar`s its
 #    output.
+# 5. We instantiate a script which executes `hugo server`
 #
 # Constructing this intermediary Hugo source directory may seem unnecessary.
 # After all, why not just use the `hugo_website` rules's package as a the Hugo
@@ -51,9 +55,6 @@ def _hugo_website_impl(ctx):
     hugo_website_package = ctx.label.package
     hugo_src_dir_name = _hugo_src_dir_name(ctx)
 
-    # Declare temporary files.
-    build_script = ctx.actions.declare_file(_build_script_name(ctx))
-    
     # Add all `srcs` as symlinks under `hugo_src_dir`. We need to find where
     #  within this directory each source needs to be placed. To find this, we
     #  need to drop a `File` path's root and the directories up to this rule's
@@ -93,9 +94,11 @@ def _hugo_website_impl(ctx):
 
     symlinks = depset(direct = symlinks)
 
-    # Declare the output.
+    # Declare the output archive.
     website_archive = ctx.actions.declare_file(_website_archive_name(ctx))
 
+    # Declare, write, and run the build script.
+    build_script = ctx.actions.declare_file(_build_script_name(ctx))
     ctx.actions.expand_template(
         template = ctx.file._run_hugo_build_script_template,
         output = build_script,
@@ -106,7 +109,6 @@ def _hugo_website_impl(ctx):
             "{WEBSITE_ARCHIVE}": website_archive.path,
         },
     )
-
     ctx.actions.run(
         executable = build_script,
         inputs = depset(
@@ -124,8 +126,29 @@ def _hugo_website_impl(ctx):
         progress_message = "Building and archiving Hugo website `{}`".format(ctx.label),
     )
 
+    # Declare and write the server scipt.
+    server_script = ctx.actions.declare_file(_server_script_name(ctx))
+    ctx.actions.expand_template(
+        template = ctx.file._run_hugo_server_script_template,
+        output = server_script,
+        substitutions = {
+            "{HUGO_EXEC}": hugo_exec.path,
+            # TODO(dwtj): The way `HUGO_SOURCE_DIR` is set feels like a hack.
+            "{HUGO_SOURCE_DIR}": "{}/{}".format(ctx.label.package, hugo_src_dir_name),
+        }
+    )
+
     return [
-        DefaultInfo(files = depset([website_archive])),
+        DefaultInfo(
+            files = depset([website_archive]),
+            executable = server_script,
+            runfiles = ctx.runfiles(
+                files = [
+                    hugo_exec,
+                ],
+                transitive_files = symlinks,
+            ),
+        ),
         HugoWebsiteInfo(
             srcs = srcs,
             website_archive = website_archive,
@@ -145,5 +168,10 @@ hugo_website = rule(
             default = Label("@dwtj_rules_hugo//hugo:private/hugo_website/TEMPLATE.run_hugo_build.sh"),
             allow_single_file = True,
         ),
-    }
+        "_run_hugo_server_script_template": attr.label(
+            default = Label("@dwtj_rules_hugo//hugo:private/hugo_website/TEMPLATE.run_hugo_server.sh"),
+            allow_single_file = True,
+        ),
+    },
+    executable = True,
 )
