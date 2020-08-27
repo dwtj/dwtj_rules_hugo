@@ -1,0 +1,13 @@
+baseURL = "https://dwtj_rules_hugo.github.io/"
+footnoteReturnLinkContents = "↩"
+title = "dwtj_rules_hugo"
+
+[params]
+  AuthorName = "David Johnston"
+  GitHubUser = "dwtj"
+  Subtitle = "Bazel rules for building Hugo website"
+  CopyrightHolder = "David Johnston"
+  CopyrightYears = "2020"
+
+[permalinks]
+  posts = "/:year/:month/:title/"

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {{ $main_stylesheet := resources.Get "sass/main.scss" | toCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $main_stylesheet.Permalink }}">
+    <title>{{ block "title" . }}
+      {{ $.Site.Title }}
+    {{ end }}</title>
+  </head>
+  <body>
+    {{ block "main" . }}
+      <!-- No default content for "main". -->
+    {{ end }}
+    {{ block "footer" . }}
+    <footer>
+      <p>Copyright © {{ $.Site.Params.CopyrightYears }} {{ $.Site.Params.CopyrightHolder }}</p>
+    </footer>
+    {{ end }}
+  </body>
+</html>
