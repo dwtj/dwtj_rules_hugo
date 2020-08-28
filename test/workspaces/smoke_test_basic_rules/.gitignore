@@ -1,4 +1,4 @@
 bazel-bin
-bazel-smoke_test_basics
+bazel-smoke_test_basic_rules
 bazel-out
 bazel-testlogs
