@@ -1,21 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
+
+    <!-- Taken from <https://getbootstrap.com/docs/4.5/getting-started/introduction/>. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Taken from <https://getbootstrap.com/docs/4.5/getting-started/introduction/>. -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     {{ $main_stylesheet := resources.Get "sass/main.scss" | toCSS | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $main_stylesheet.Permalink }}">
+
     <title>{{ block "title" . }}
       {{ $.Site.Title }}
     {{ end }}</title>
   </head>
+
   <body>
-    {{ block "main" . }}
-      <!-- No default content for "main". -->
+    {{ block "body" . }}
+      <!-- The body contains a few semantic elements. -->
+      {{ block "header" . }}
+        {{ partial "header.html" . }}
+      {{ end }}
+      {{ block "main" . }}
+        <!-- No default main content. -->
+      {{ end }}
+      {{ block "footer" . }}
+        {{ partial "footer.html" . }}
+      {{ end }}
     {{ end }}
-    {{ block "footer" . }}
-    <footer>
-      <p>Copyright © {{ $.Site.Params.CopyrightYears }} {{ $.Site.Params.CopyrightHolder }}</p>
-    </footer>
-    {{ end }}
+
+    <!-- Taken from <https://getbootstrap.com/docs/4.5/getting-started/introduction/>. -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   </body>
 </html>

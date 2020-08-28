@@ -5,6 +5,7 @@ title = "dwtj_rules_hugo"
 [params]
   AuthorName = "David Johnston"
   GitHubUser = "dwtj"
+  GitHubUserPortraitUrl = "https://avatars0.githubusercontent.com/u/2457848?s=400&u=e0cfa4b84f65f4fb6f73e6bc39762d82b85cb58c&v=4"
   Subtitle = "Bazel rules for building Hugo website"
   CopyrightHolder = "David Johnston"
   CopyrightYears = "2020"

@@ -1,3 +1,12 @@
-h1 {
-    font-family: "Monospace";
+footer {
+    p#copyright-notice {
+        font-size: xx-small;
+        font-style: italic;
+    }
+}
+
+body {
+    // This padding helps prevent the footer from covering the main content, as
+    // advised [here](https://stackoverflow.com/a/13365611).
+    padding-bottom: 70px;
 }
