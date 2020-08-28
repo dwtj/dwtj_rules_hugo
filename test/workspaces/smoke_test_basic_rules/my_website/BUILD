@@ -1,5 +1,11 @@
-load("@dwtj_rules_hugo//hugo:defs.bzl", "hugo_website")
+load(
+    "@dwtj_rules_hugo//hugo:defs.bzl",
+    "hugo_website",
+    "hugo_import",
+)
 
+# Tests that a simple website can be built. Notice that `foo.md` is not in the
+# Bazel source tree: it is an output of the rule `:bazel_generated_content`.
 hugo_website(
     name = "my_website",
     srcs = [
@@ -9,18 +15,63 @@ hugo_website(
     ],
 )
 
-# Make a markdown file with just an empty front matter.
+# Make a markdown file with just an empty front matter. This is used for testing
+# that the `hugo_website` rule can handle
 genrule(
     name = "bazel_generated_content",
     outs = ["foo.md"],
     cmd_bash = 'echo "---\r---\r" > $(RULEDIR)/foo.md'
 )
 
+
+# A website with `//a_different_pkg:some_{,bazel_generated_}content` as `srcs`.
+# This target should *fail* because these files are not rooted under this package.
+# To include such files in a `hugo_website`, they will need to be wrapped in
+# another Hugo rule (e.g. `hugo_import` as shown below).
 hugo_website(
-    name = "my_website_with_bad_src",
+    name = "my_website_with_bad_srcs",
     srcs = [
         "config.toml",
         "layouts/index.html",
-        "//:foo.md",
+        "//a_different_pkg:some_content.md",
+        "//a_different_pkg:some_bazel_generated_content.md",
     ],
+)
+
+# A website with a `hugo_import` dependency.
+hugo_website(
+    name = "my_website_with_hugo_imports",
+    srcs = [
+        "config.toml",
+    ],
+    deps = [
+        ":import_one",
+        ":import_two",
+        ":import_three",
+        ":import_four",
+    ],
+)
+
+hugo_import(
+    name = "import_one",
+    src = "layouts/index.html",
+    path = "layouts/index.html",
+)
+
+hugo_import(
+    name = "import_two",
+    src = "foo.md",
+    path = "content/foo.md",
+)
+
+hugo_import(
+    name = "import_three",
+    src = "//a_different_pkg:some_content.md",
+    path = "content/some_content.md",
+)
+
+hugo_import(
+    name = "import_four",
+    src = "//a_different_pkg:some_bazel_generated_content.md",
+    path = "content/some_bazel_generated_content.md",
 )

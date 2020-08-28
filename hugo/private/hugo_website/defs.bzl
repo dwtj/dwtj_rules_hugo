@@ -1,6 +1,8 @@
 '''Defines the `hugo_website` rule.
 '''
 
+load("//hugo:private/hugo_import/defs.bzl", "HugoImportInfo")
+
 HugoWebsiteInfo = provider(
     fields = {
         "srcs": "A `depset` of `File`s pointing to all of the source files. This includes all of the files which will be included in the source tree provided to the `hugo` command.",
@@ -84,14 +86,35 @@ def _hugo_website_impl(ctx):
 
         # Declare and create the symlink to `src`.
         path = "{}/{}".format(hugo_src_dir_name, hugo_relative_path)
-        link = ctx.actions.declare_file(path)
+        symlink = ctx.actions.declare_file(path)
         ctx.actions.symlink(
-            output = link,
+            output = symlink,
             target_file = src,
             progress_message = "Symlinking `{}` into Hugo source directory of `hugo_website` labeled `{}`".format(src, ctx.label),
         )
-        symlinks.append(link)
+        symlinks.append(symlink)
 
+    # Now include all srcs from deps as symlinks within the Hugo src directory.
+    # TODO(dwtj): Make sure that Bazel actually creates an error if one file
+    #  clobbers another.
+    # TODO(dwtj): Consider making a friendlier error message if one file
+    #  clobbers another. 
+    for dep in ctx.attr.deps:
+        src_file = dep[HugoImportInfo].src
+        path = dep[HugoImportInfo].path
+
+        # Symlink the file within the Hugo source directory. (Note that declared
+        # files are relative to the this package.)
+        path = "{}/{}".format(hugo_src_dir_name, path)
+        symlink = ctx.actions.declare_file(path)
+        ctx.actions.symlink(
+            output = symlink,
+            target_file = src_file,
+            progress_message = "Symlinking `{}` into Hugo source directory of the `hugo_website` labeled `{}`".format(src_file, ctx.label)
+        )
+        symlinks.append(symlink)
+
+    # Wrap the `symlinks` list in a `depset`.
     symlinks = depset(direct = symlinks)
 
     # Declare the output archive.
@@ -159,10 +182,18 @@ hugo_website = rule(
     doc = "A simple rule which builds a Hugo website with the `hugo` command and then archives the output with `tar`. A `hugo_website`'s Bazel package is taken to be the Hugo website's root directory. This means that the Bazel `BUILD` file declaring the `hugo_website` should be a siblings of its Hugo top-level files & directories, e.g., `config.toml`, `content/`, `layouts/`, etc.",
     implementation = _hugo_website_impl,
     toolchains = [_HUGO_TOOLCHAIN_TYPE],
+    provides = [HugoWebsiteInfo],
     attrs = {
         "srcs": attr.label_list(
             doc = "A list of files to be included in the website. Be aware that the rule will fail if a source file given here is located outside of this `hugo_website`'s package or subpackages. A `glob()` expression may be an appropriate value for this attribute, but be aware that Bazel `glob`s do not reach into Bazel subpackages.",
             allow_files = True,
+            allow_empty = False,
+        ),
+        "deps": attr.label_list(
+            allow_files = False,
+            providers = [HugoImportInfo],
+            allow_empty = True,
+            default = list(),
         ),
         "_run_hugo_build_script_template": attr.label(
             default = Label("@dwtj_rules_hugo//hugo:private/hugo_website/TEMPLATE.run_hugo_build.sh"),
