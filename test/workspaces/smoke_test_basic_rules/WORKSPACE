@@ -1,4 +1,4 @@
-workspace(name = "smoke_test_basics")
+workspace(name = "smoke_test_basic_rules")
 
 local_repository(
     name = "dwtj_rules_hugo",

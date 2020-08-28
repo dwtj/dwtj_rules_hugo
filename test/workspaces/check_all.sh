@@ -7,7 +7,7 @@ ROOT_WORKSPACE="$PWD"
 
 # The target `//my_website:my_website` should succeed, but the target
 # `//my_website:my_website_with_bad_src` should fail.
-cd "$ROOT_WORKSPACE/test/workspaces/smoke_test_basics"
+cd "$ROOT_WORKSPACE/test/workspaces/smoke_test_basic_rules"
 bazel clean
 bazel build //my_website
 if bazel build //my_website:my_website_with_bad_src > /dev/null 2> /dev/null ; then
