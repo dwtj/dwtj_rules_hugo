@@ -1,6 +1,7 @@
 load(
     "@dwtj_rules_hugo//hugo:defs.bzl",
     "hugo_website",
+    "hugo_library",
     "hugo_import",
 )
 
@@ -20,14 +21,13 @@ hugo_website(
 genrule(
     name = "bazel_generated_content",
     outs = ["foo.md"],
-    cmd_bash = 'echo "---\r---\r" > $(RULEDIR)/foo.md'
+    cmd_bash = 'echo "---\r---\r" > "$(RULEDIR)/foo.md"'
 )
 
-
 # A website with `//a_different_pkg:some_{,bazel_generated_}content` as `srcs`.
-# This target should *fail* because these files are not rooted under this package.
-# To include such files in a `hugo_website`, they will need to be wrapped in
-# another Hugo rule (e.g. `hugo_import` as shown below).
+# This target should *fail* because these files are not rooted under this
+# package. To include such files in a `hugo_website`, they will need to be
+# wrapped in another Hugo rule (e.g. `hugo_import` as shown below).
 hugo_website(
     name = "my_website_with_bad_srcs",
     srcs = [
@@ -38,12 +38,20 @@ hugo_website(
     ],
 )
 
-# A website with a `hugo_import` dependency.
+# A website with a `hugo_import` dependencies.
 hugo_website(
     name = "my_website_with_hugo_imports",
     srcs = [
         "config.toml",
     ],
+    deps = [
+        ":four_imports",
+        ":import_with_added_front_matter",
+    ],
+)
+
+hugo_library(
+    name = "four_imports",
     deps = [
         ":import_one",
         ":import_two",
@@ -74,4 +82,19 @@ hugo_import(
     name = "import_four",
     src = "//a_different_pkg:some_bazel_generated_content.md",
     path = "content/some_bazel_generated_content.md",
+)
+
+genrule(
+    name = "bazel_generated_content_with_no_front_matter",
+    outs = ["empty.md"],
+    cmd_bash = 'touch "$(RULEDIR)/empty.md"'
+)
+
+_EMPTY_FRONT_MATTER = "---\n---"
+
+hugo_import(
+    name = "import_with_added_front_matter",
+    src = "empty.md",
+    path = "content/empty.md",
+    add_front_matter = _EMPTY_FRONT_MATTER,
 )

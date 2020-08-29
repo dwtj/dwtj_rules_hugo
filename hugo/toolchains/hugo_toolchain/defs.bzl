@@ -1,6 +1,9 @@
 '''Defines the `hugo_toolchain` rule. It is used to make toolchain instances.
 '''
 
+# TODO(dwtj): Consider moving these definitions into the `//hugo` package so
+#  that all Starlark definitions in this project will be in that package.
+
 HugoToolchainInfo = provider(
     fields = {
         "hugo_exec": "A `File` pointing to a `hugo` executable (in the host configuration)."

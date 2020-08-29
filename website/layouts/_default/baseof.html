@@ -16,20 +16,18 @@
       {{ $.Site.Title }}
     {{ end }}</title>
   </head>
-
   <body>
-    {{ block "body" . }}
-      <!-- The body contains a few semantic elements. -->
-      {{ block "header" . }}
-        {{ partial "header.html" . }}
-      {{ end }}
-      {{ block "main" . }}
-        <!-- No default main content. -->
-      {{ end }}
-      {{ block "footer" . }}
-        {{ partial "footer.html" . }}
-      {{ end }}
-    {{ end }}
+     {{ block "header" . }}
+       {{ partial "header.html" . }}
+     {{ end }}
+
+     {{ block "main" . }}
+       <!-- No default main content. -->
+     {{ end }}
+
+     {{ block "footer" . }}
+       {{ partial "footer.html" . }}
+     {{ end }}
 
     <!-- Taken from <https://getbootstrap.com/docs/4.5/getting-started/introduction/>. -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

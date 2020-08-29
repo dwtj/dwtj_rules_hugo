@@ -1,0 +1,5 @@
+bazel-bin
+bazel-dwtj_rules_hugo_github_io
+bazel-out
+bazel-testlogs
+bazel-website
