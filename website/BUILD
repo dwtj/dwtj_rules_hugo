@@ -1,6 +1,6 @@
 load("@dwtj_rules_hugo//hugo:defs.bzl", "hugo_website")
-load("//bazel:hugo_import_stardoc.bzl", "hugo_import_stardoc")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("//bazel:hugo_library_of_all_stardoc.bzl", "hugo_library_of_all_stardoc")
 
 alias(
     name = "site",
@@ -27,20 +27,16 @@ hugo_website(
         ],
     ),
     deps = [
-        ":defs",
+        ":all_stardoc_content",
     ],
 )
 
 bzl_library(
     name = "all_bzl",
-    srcs = [
-        "@dwtj_rules_hugo//hugo:all_bzl_files_in_project",
-    ]
+    srcs = ["@dwtj_rules_hugo//hugo:all_bzl_files_in_project"]
 )
 
-hugo_import_stardoc(
-    name = "defs",
-    hugo_path = "content/defs.md",
-    stardoc_input = "@dwtj_rules_hugo//hugo:defs.bzl",
-    bzl_deps = [":all_bzl"],
+hugo_library_of_all_stardoc(
+    name = "all_stardoc_content",
+    all_bzl = ":all_bzl",
 )

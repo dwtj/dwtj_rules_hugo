@@ -33,6 +33,9 @@ def hugo_import_stardoc(
         This defaults to the empty list.
       visibility: Both targets are the given this `visibility` value. It which
         defaults to just `//visibility:private` (i.e. package only visibility).
+      add_front_matter: This is passed to the `add_front_matter` attribute of
+        the `hugo_import` target. This defaults to an empty front matter
+        section.
 
     Returns:
       `None`
