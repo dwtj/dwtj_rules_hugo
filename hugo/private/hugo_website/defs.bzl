@@ -158,13 +158,19 @@ def _hugo_website_impl(ctx):
 
     # Declare and write the server scipt.
     server_script = ctx.actions.declare_file(_server_script_name(ctx))
+    # TODO(dwtj): The way `HUGO_SOURCE_DIR` is set (still) feels like a hack.
+    hugo_serve_source_dir_path = hugo_src_dir_name \
+                                     if ctx.label.package == "" \
+                                     else "{}/{}".format(
+                                         ctx.label.package,
+                                         hugo_src_dir_name
+                                     )
     ctx.actions.expand_template(
         template = ctx.file._run_hugo_server_script_template,
         output = server_script,
         substitutions = {
-            "{HUGO_EXEC}": hugo_exec.path,
-            # TODO(dwtj): The way `HUGO_SOURCE_DIR` is set feels like a hack.
-            "{HUGO_SOURCE_DIR}": "{}/{}".format(ctx.label.package, hugo_src_dir_name),
+            "{HUGO_EXEC}": hugo_exec.short_path,
+            "{HUGO_SOURCE_DIR}": hugo_serve_source_dir_path,
         }
     )
 
