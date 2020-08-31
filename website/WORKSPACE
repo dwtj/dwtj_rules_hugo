@@ -1,4 +1,4 @@
-workspace(name = "dwtj_rules_hugo_github_io")
+workspace(name = "website")
 
 # CONFIGURE `@dwtj_rules_hugo` REPOSITORY ######################################
 

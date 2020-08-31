@@ -4,11 +4,11 @@ load("//bazel:hugo_library_of_all_stardoc.bzl", "hugo_library_of_all_stardoc")
 
 alias(
     name = "site",
-    actual = ":dwtj_rules_hugo_github_io",
+    actual = ":gh_pages_website",
 )
 
 hugo_website(
-    name = "dwtj_rules_hugo_github_io",
+    name = "gh_pages_website",
     srcs = glob(
         include = [
             "config.toml",
