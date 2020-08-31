@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    
+    <link rel="stylesheet" href="https://dwtj.github.io/dwtj_rules_hugo/sass/main.min.ea0831f85c9aae50bad474b37e5f92093462fd32f9d8fd9232917ac598eadbdd.css">
+
+    <title>
+      dwtj_rules_hugo
+    </title>
+  </head>
+  <body>
+     
+       <header>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://avatars0.githubusercontent.com/u/2457848?s=400&amp;u=e0cfa4b84f65f4fb6f73e6bc39762d82b85cb58c&amp;v=4" alt="dwtj_github_portrait" class="d-inline-block align-top" width="30" height="30">
+            <span>Hugo Bazel Rules</span>
+        </a>
+    </nav>
+</header>
+
+     
+
+     
+<main class="container">
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="hugo_library">hugo_library</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>A <code>hugo_library</code> represents a Hugo website fragment. It is essentially a
+collection of Hugo source files and their corresponding paths relative to a
+Hugo website root.</p>
+<p>A <code>hugo_library</code> target lets you wrap multiple related source files, organize
+them into a file hierarchy, and provide them as one to <code>hugo_website</code> targets.</p>
+<p>Note that this rule is not involved in building Hugo websites or website
+fragments. It is only a collection of Hugo website source files. The sources in
+a <code>hugo_library</code> are only built within the source tree of a <code>hugo_website</code> in
+which they have been included.</p>
+<p>A <code>hugo_library</code> target takes its Bazel package to be the root directory of a
+collection of Hugo source files. For each of the source files in <code>srcs</code>, the
+file&rsquo;s path relative to this root is recorded and used to later place that
+source file within Hugo websites.</p>
+<p>A <code>hugo_library</code> is included in a <code>hugo_website</code> by including it in a website&rsquo;s
+<code>deps</code> attribute. Doing so means that each file in the <code>hugo_library</code> should
+be placed into the source tree of that <code>hugo_website</code>; specifically, each
+file is placed at its corresponding <code>path</code> <em>relative to the website&rsquo;s root</em>.</p>
+<p>This way in which the <code>hugo_library</code> target&rsquo;s package is used as a website
+root is quite like <code>hugo_website</code> targets.</p>
+<p>Also like <code>hugo_website</code>, <code>srcs</code> must be in this Bazel package or a Bazel
+subpackage. Otherwise, analysis of this target will fail.</p>
+<p>Note that the <code>hugo_website</code> will fail if two of its source files are mapped
+to the same path within its source tree. Thus both the contents and paths of
+files are part of a <code>hugo_library</code>'s public interface.</p>
+<p>This rule will fail if two of its source files are mapped to the same relative
+path.</p>
+<p>This rule will fail if no sources are provided (i.e. <code>srcs</code> is empty and there
+are no sources provided by any <code>deps</code>).</p>
+<p><strong>ATTRIBUTES</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Mandatory</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">name</td>
+<td align="center">A unique name for this target.</td>
+<td align="center"><!-- raw HTML omitted -->Name<!-- raw HTML omitted --></td>
+<td align="center">required</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">deps</td>
+<td align="center">A list of targets providing <!-- raw HTML omitted -->HugoSourcesInfo<!-- raw HTML omitted --> (e.g. <!-- raw HTML omitted -->hugo_library<!-- raw HTML omitted -->s and <!-- raw HTML omitted -->hugo_import<!-- raw HTML omitted -->s) whose sources should be included in this <!-- raw HTML omitted -->hugo_library<!-- raw HTML omitted --> target and any Hugo targets which depend upon this target.</td>
+<td align="center"><!-- raw HTML omitted -->List of labels<!-- raw HTML omitted --></td>
+<td align="center">optional</td>
+<td align="center">[]</td>
+</tr>
+<tr>
+<td align="center">srcs</td>
+<td align="center">A list of source files to include in this target. All of these source files should be in this target&rsquo;s package or one of its subpackages.</td>
+<td align="center"><!-- raw HTML omitted -->List of labels<!-- raw HTML omitted --></td>
+<td align="center">optional</td>
+<td align="center">[]</td>
+</tr>
+</tbody>
+</table>
+
+</main>
+
+
+     
+       <footer class = "navbar fixed-bottom bg-light">
+  <p id="copyright-notice">Copyright © 2020 David Johnston. All rights reserved.</p>
+</footer>
+
+     
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    
+    <link rel="stylesheet" href="https://dwtj.github.io/dwtj_rules_hugo/sass/main.min.ea0831f85c9aae50bad474b37e5f92093462fd32f9d8fd9232917ac598eadbdd.css">
+
+    <title>
+      dwtj_rules_hugo
+    </title>
+  </head>
+  <body>
+     
+       <header>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://avatars0.githubusercontent.com/u/2457848?s=400&amp;u=e0cfa4b84f65f4fb6f73e6bc39762d82b85cb58c&amp;v=4" alt="dwtj_github_portrait" class="d-inline-block align-top" width="30" height="30">
+            <span>Hugo Bazel Rules</span>
+        </a>
+    </nav>
+</header>
+
+     
+
+     
+<main class="container">
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="hugo_website">hugo_website</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>A simple rule which builds a Hugo website with the <code>hugo</code> command and then
+archives the output with <code>tar</code>.</p>
+<p>A <code>hugo_website</code>'s Bazel package is taken to be the Hugo website&rsquo;s root
+directory. This means that the Bazel <code>BUILD</code> file declaring the <code>hugo_website</code>
+should be a siblings of its Hugo top-level files &amp; directories (e.g.,
+<code>config.toml</code>, <code>content/</code>, <code>layouts/</code>, etc).</p>
+<p><strong>ATTRIBUTES</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Mandatory</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">name</td>
+<td align="center">A unique name for this target.</td>
+<td align="center"><!-- raw HTML omitted -->Name<!-- raw HTML omitted --></td>
+<td align="center">required</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">deps</td>
+<td align="center">A list of targets providing <!-- raw HTML omitted -->HugoSourcesInfo<!-- raw HTML omitted --> (e.g. <!-- raw HTML omitted -->hugo_library<!-- raw HTML omitted -->s and <!-- raw HTML omitted -->hugo_import<!-- raw HTML omitted -->s) whose sources should be included in this <!-- raw HTML omitted -->hugo_website<!-- raw HTML omitted -->.</td>
+<td align="center"><!-- raw HTML omitted -->List of labels<!-- raw HTML omitted --></td>
+<td align="center">optional</td>
+<td align="center">[]</td>
+</tr>
+<tr>
+<td align="center">srcs</td>
+<td align="center">A list of files to be included in the website.<!-- raw HTML omitted --><!-- raw HTML omitted -->Be aware that the rule will fail if a source file given here is located outside of this <!-- raw HTML omitted -->hugo_website<!-- raw HTML omitted -->'s package or subpackages.<!-- raw HTML omitted --><!-- raw HTML omitted -->A <!-- raw HTML omitted -->glob()<!-- raw HTML omitted --> expression may be an appropriate value for this attribute, but be aware that Bazel <!-- raw HTML omitted -->glob<!-- raw HTML omitted -->s do not reach into Bazel subpackages.</td>
+<td align="center"><!-- raw HTML omitted -->List of labels<!-- raw HTML omitted --></td>
+<td align="center">optional</td>
+<td align="center">[]</td>
+</tr>
+</tbody>
+</table>
+
+</main>
+
+
+     
+       <footer class = "navbar fixed-bottom bg-light">
+  <p id="copyright-notice">Copyright © 2020 David Johnston. All rights reserved.</p>
+</footer>
+
+     
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
