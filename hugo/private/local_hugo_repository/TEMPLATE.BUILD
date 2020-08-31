@@ -4,7 +4,7 @@
 # - RULES_HUGO_REPOSITORY_NAME: {RULES_HUGO_REPOSITORY_NAME}
 # - HUGO_LABEL: {HUGO_LABEL}
 
-load("@{RULES_HUGO_REPOSITORY_NAME}//hugo/toolchains/hugo_toolchain:defs.bzl", "hugo_toolchain")
+load("@{RULES_HUGO_REPOSITORY_NAME}//hugo:toolchains.bzl", "hugo_toolchain")
 
 hugo_toolchain(
     name = "_hugo_toolchain",
