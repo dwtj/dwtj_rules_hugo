@@ -1,5 +1,9 @@
 # Bazel Rules for Hugo-Generated Static Websites
 
+This project defines [Bazel][bazel] rules to help you declare, build,
+organize, reuse, and archive [Hugo][hugo] websites as part of your Bazel
+workspace.
+
 ## Build Your Hugo Website with Bazel
 
 Add a [`hugo_website`][hugo_website] rule to a Bazel package to declare a
@@ -83,6 +87,7 @@ Here's what this configuration snippet does:
 
 ---
 
+[bazel]: https://www.bazel.build
 [hugo]: https://gohugo.io
 [hugo_website]: https://dwtj.github.io/dwtj_rules_hugo/#hugo_website
 [hugo_import]: https://dwtj.github.io/dwtj_rules_hugo/#hugo_import
