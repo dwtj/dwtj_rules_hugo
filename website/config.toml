@@ -12,3 +12,12 @@ title = "dwtj_rules_hugo"
 
 [permalinks]
   posts = "/:year/:month/:title/"
+
+[markup.goldmark.renderer]
+# Allow "unsafe" Markdown rendering to ensure that the raw HTML in
+# Stardoc-generated content is included in the resulting HTML. Otherwise, raw
+# HTML elements can get [replaced][1] [with HTML comments][2].
+#
+# 1: https://discourse.gohugo.io/t/raw-html-getting-omitted-in-0-60-0/22032
+# 2: https://gohugo.io/news/0.60.0-relnotes/
+unsafe = true
