@@ -82,7 +82,7 @@ Here's what this configuration snippet does:
 
 ---
 
-1: https://github.com/bazelbuild/rules_pkg
-2: https://github.com/bazelbuild/stardoc
-3: https://dwtj.github.io/dwtj_rules_hugo/
-4: https://github.com/dwtj/dwtj_rules_hugo/tree/main/example
+[1]: https://github.com/bazelbuild/rules_pkg
+[2]: https://github.com/bazelbuild/stardoc
+[3]: https://dwtj.github.io/dwtj_rules_hugo/
+[4]: https://github.com/dwtj/dwtj_rules_hugo/tree/main/example
