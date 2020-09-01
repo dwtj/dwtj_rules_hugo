@@ -3,6 +3,14 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dwtj.github.io/dwtj_rules_hugo/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://dwtj.github.io/dwtj_rules_hugo/</loc>
+  </url>
+  
+  <url>
     <loc>https://dwtj.github.io/dwtj_rules_hugo/hugo_import/</loc>
   </url>
   
@@ -19,27 +27,7 @@
   </url>
   
   <url>
-    <loc>https://dwtj.github.io/dwtj_rules_hugo/hugosourcesinfo/</loc>
-  </url>
-  
-  <url>
-    <loc>https://dwtj.github.io/dwtj_rules_hugo/hugotoolchaininfo/</loc>
-  </url>
-  
-  <url>
-    <loc>https://dwtj.github.io/dwtj_rules_hugo/hugowebsiteinfo/</loc>
-  </url>
-  
-  <url>
     <loc>https://dwtj.github.io/dwtj_rules_hugo/local_hugo_repository/</loc>
-  </url>
-  
-  <url>
-    <loc>https://dwtj.github.io/dwtj_rules_hugo/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://dwtj.github.io/dwtj_rules_hugo/</loc>
   </url>
   
   <url>

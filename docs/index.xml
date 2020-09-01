@@ -10,7 +10,7 @@
     
     
     <item>
-      <title></title>
+      <title>hugo_import</title>
       <link>https://dwtj.github.io/dwtj_rules_hugo/hugo_import/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -20,7 +20,7 @@
     </item>
     
     <item>
-      <title></title>
+      <title>hugo_library</title>
       <link>https://dwtj.github.io/dwtj_rules_hugo/hugo_library/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -31,7 +31,7 @@ Note that this rule is not involved in building Hugo websites or website fragmen
     </item>
     
     <item>
-      <title></title>
+      <title>hugo_toolchain</title>
       <link>https://dwtj.github.io/dwtj_rules_hugo/hugo_toolchain/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -41,49 +41,19 @@ Note that this rule is not involved in building Hugo websites or website fragmen
     </item>
     
     <item>
-      <title></title>
+      <title>hugo_website</title>
       <link>https://dwtj.github.io/dwtj_rules_hugo/hugo_website/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://dwtj.github.io/dwtj_rules_hugo/hugo_website/</guid>
-      <description>hugo_website A simple rule which builds a Hugo website with the hugo command and then archives the output with tar.
+      <description>hugo_website A simple rule which builds a Hugo website with the hugo command. The output directory is named the same as the rule&amp;rsquo;s name attribute.
 A hugo_website&#39;s Bazel package is taken to be the Hugo website&amp;rsquo;s root directory. This means that the Bazel BUILD file declaring the hugo_website should be a siblings of its Hugo top-level files &amp;amp; directories (e.g., config.toml, content/, layouts/, etc).
 ATTRIBUTES
    Name Description Type Mandatory Default     name A unique name for this target.</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://dwtj.github.io/dwtj_rules_hugo/hugosourcesinfo/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://dwtj.github.io/dwtj_rules_hugo/hugosourcesinfo/</guid>
-      <description>HugoSourcesInfo FIELDS
-   Name Description     srcs A map from strings to Files. Each relationship in this map encodes a Hugo source file and its path relative to a Hugo source root.    </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://dwtj.github.io/dwtj_rules_hugo/hugotoolchaininfo/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://dwtj.github.io/dwtj_rules_hugo/hugotoolchaininfo/</guid>
-      <description>HugoToolchainInfo FIELDS
-   Name Description     hugo_exec A Filepointing to a hugoexecutable (in the host configuration).    </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://dwtj.github.io/dwtj_rules_hugo/hugowebsiteinfo/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://dwtj.github.io/dwtj_rules_hugo/hugowebsiteinfo/</guid>
-      <description>HugoWebsiteInfo FIELDS
-   Name Description     srcs A depsetof Files pointing to all of the source files. This includes all of the files which will be included in the source tree provided to the hugocommand.   website_archive A Filepointing to the output website archive built by this rule.    </description>
-    </item>
-    
-    <item>
-      <title></title>
+      <title>local_hugo_repository</title>
       <link>https://dwtj.github.io/dwtj_rules_hugo/local_hugo_repository/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
