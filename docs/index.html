@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.74.3" />
+	<meta name="generator" content="Hugo 0.69.0" />
     <meta charset="utf-8">
 
     
@@ -11,19 +11,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     
-    <link rel="stylesheet" href="https://dwtj.github.io/dwtj_rules_hugo/sass/main.min.c210265c1bd4ed439891a0396949766ac3c3b58afb90b8f61bd937ad8ba2bfcc.css">
+    <link rel="stylesheet" href="https://dwtj.github.io/dwtj_rules_hugo/sass/main.min.3d4de93f91bb64a838394e33d3b72ec50864756f923f31aec8f93042bd26d2af.css">
 
     <title>
-      dwtj_rules_hugo
+      Somebody&#39;s Hugo Bazel Rules
     </title>
   </head>
   <body>
+     
+<a href="https://github.com/dwtj/dwtj_rules_hugo" class="github-corner" aria-label="View source on GitHub">
+    <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+
+
+
      
        <header>
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="https://avatars0.githubusercontent.com/u/2457848?s=400&amp;u=e0cfa4b84f65f4fb6f73e6bc39762d82b85cb58c&amp;v=4" alt="dwtj_github_portrait" class="d-inline-block align-top" width="30" height="30">
-            <span>Hugo Bazel Rules</span>
+	    <span>Hugo Bazel Rules</span>
         </a>
     </nav>
 </header>
@@ -32,28 +43,34 @@
 
      
 <main class="container">
-  <nav id="home-page-toc">
-    
-    <li><a href="#hugo_import"><code>hugo_import</code></a></li>
-    
-    <li><a href="#hugo_library"><code>hugo_library</code></a></li>
-    
-    <li><a href="#hugo_toolchain"><code>hugo_toolchain</code></a></li>
-    
-    <li><a href="#hugo_website"><code>hugo_website</code></a></li>
-    
-    <li><a href="#local_hugo_repository"><code>local_hugo_repository</code></a></li>
-    
-  </nav>
+  <div class="row">
+    <div class="col-md-3">
+      <nav id="home-page-toc">
+        
+        <li><a href="#hugo_import">hugo_import</a></li>
+        
+        <li><a href="#hugo_library">hugo_library</a></li>
+        
+        <li><a href="#hugo_toolchain">hugo_toolchain</a></li>
+        
+        <li><a href="#hugo_website">hugo_website</a></li>
+        
+        <li><a href="#local_hugo_repository">local_hugo_repository</a></li>
+        
+      </nav>
+    </div>
 
-  
-    
+    <div class="col-md-9 border-left">
+      <article>
+      
+        
 <section class="home-page-stardoc">
-    <!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+    <!-- Generated with Stardoc: http://skydoc.bazel.build -->
+<p><a name="#hugo_import"></a></p>
 <h2 id="hugo_import">hugo_import</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+hugo_import(<a href="#hugo_import-name">name</a>, <a href="#hugo_import-add_front_matter">add_front_matter</a>, <a href="#hugo_import-path">path</a>, <a href="#hugo_import-src">src</a>)
+</pre>
 <p><strong>ATTRIBUTES</strong></p>
 <table>
 <thead>
@@ -69,13 +86,13 @@
 <tr>
 <td align="center">name</td>
 <td align="center">A unique name for this target.</td>
-<td align="center"><!-- raw HTML omitted -->Name<!-- raw HTML omitted --></td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#name">Name</a></td>
 <td align="center">required</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td align="center">add_front_matter</td>
-<td align="center">If this is non-empty, then the imported file is actually a new file whose contents are created by prepending this string (plus a newline) to the beginning of the <!-- raw HTML omitted -->src<!-- raw HTML omitted --> file&rsquo;s contents. The new file will be placed in this target&rsquo;s package and with this target&rsquo;s <!-- raw HTML omitted -->name<!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->This attribute may be useful for adding a front matter section to Bazel-generated files which don&rsquo;t already have a front matter section. (E.g., you want to include a file is generated by <!-- raw HTML omitted -->stardoc<!-- raw HTML omitted --> in your Hugo website, but the <!-- raw HTML omitted -->stardoc<!-- raw HTML omitted -->-generated file doesn&rsquo;t have a front matter section).<!-- raw HTML omitted --><!-- raw HTML omitted -->If this is set to the empty string (the default value), no copying is performed, i.e., the <!-- raw HTML omitted -->src<!-- raw HTML omitted --> file is imported and used without copying or modifying it.<!-- raw HTML omitted --><!-- raw HTML omitted -->Note that this does not check to see whether the <!-- raw HTML omitted -->src<!-- raw HTML omitted --> file already has a front matter section or modify one if it already exists.</td>
+<td align="center">If this is non-empty, then the imported file is actually a new file whose contents are created by prepending this string (plus a newline) to the beginning of the <code>src</code> file&rsquo;s contents. The new file will be placed in this target&rsquo;s package and with this target&rsquo;s <code>name</code>.<br><br>This attribute may be useful for adding a front matter section to Bazel-generated files which don&rsquo;t already have a front matter section. (E.g., you want to include a file is generated by <code>stardoc</code> in your Hugo website, but the <code>stardoc</code>-generated file doesn&rsquo;t have a front matter section).<br><br>If this is set to the empty string (the default value), no copying is performed, i.e., the <code>src</code> file is imported and used without copying or modifying it.<br><br>Note that this does not check to see whether the <code>src</code> file already has a front matter section or modify one if it already exists.</td>
 <td align="center">String</td>
 <td align="center">optional</td>
 <td align="center">&quot;&rdquo;</td>
@@ -90,7 +107,7 @@
 <tr>
 <td align="center">src</td>
 <td align="center"></td>
-<td align="center"><!-- raw HTML omitted -->Label<!-- raw HTML omitted --></td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#labels">Label</a></td>
 <td align="center">required</td>
 <td align="center"></td>
 </tr>
@@ -99,14 +116,15 @@
 
 </section>
 
-  
-    
+      
+        
 <section class="home-page-stardoc">
-    <!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+    <!-- Generated with Stardoc: http://skydoc.bazel.build -->
+<p><a name="#hugo_library"></a></p>
 <h2 id="hugo_library">hugo_library</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+hugo_library(<a href="#hugo_library-name">name</a>, <a href="#hugo_library-deps">deps</a>, <a href="#hugo_library-srcs">srcs</a>)
+</pre>
 <p>A <code>hugo_library</code> represents a Hugo website fragment. It is essentially a
 collection of Hugo source files and their corresponding paths relative to a
 Hugo website root.</p>
@@ -150,21 +168,21 @@ are no sources provided by any <code>deps</code>).</p>
 <tr>
 <td align="center">name</td>
 <td align="center">A unique name for this target.</td>
-<td align="center"><!-- raw HTML omitted -->Name<!-- raw HTML omitted --></td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#name">Name</a></td>
 <td align="center">required</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td align="center">deps</td>
-<td align="center">A list of targets providing <!-- raw HTML omitted -->HugoSourcesInfo<!-- raw HTML omitted --> (e.g. <!-- raw HTML omitted -->hugo_library<!-- raw HTML omitted -->s and <!-- raw HTML omitted -->hugo_import<!-- raw HTML omitted -->s) whose sources should be included in this <!-- raw HTML omitted -->hugo_library<!-- raw HTML omitted --> target and any Hugo targets which depend upon this target.</td>
-<td align="center"><!-- raw HTML omitted -->List of labels<!-- raw HTML omitted --></td>
+<td align="center">A list of targets providing <code>HugoSourcesInfo</code> (e.g. <code>hugo_library</code>s and <code>hugo_import</code>s) whose sources should be included in this <code>hugo_library</code> target and any Hugo targets which depend upon this target.</td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#labels">List of labels</a></td>
 <td align="center">optional</td>
 <td align="center">[]</td>
 </tr>
 <tr>
 <td align="center">srcs</td>
 <td align="center">A list of source files to include in this target. All of these source files should be in this target&rsquo;s package or one of its subpackages.</td>
-<td align="center"><!-- raw HTML omitted -->List of labels<!-- raw HTML omitted --></td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#labels">List of labels</a></td>
 <td align="center">optional</td>
 <td align="center">[]</td>
 </tr>
@@ -173,14 +191,15 @@ are no sources provided by any <code>deps</code>).</p>
 
 </section>
 
-  
-    
+      
+        
 <section class="home-page-stardoc">
-    <!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+    <!-- Generated with Stardoc: http://skydoc.bazel.build -->
+<p><a name="#hugo_toolchain"></a></p>
 <h2 id="hugo_toolchain">hugo_toolchain</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+hugo_toolchain(<a href="#hugo_toolchain-name">name</a>, <a href="#hugo_toolchain-hugo">hugo</a>)
+</pre>
 <p><strong>ATTRIBUTES</strong></p>
 <table>
 <thead>
@@ -196,14 +215,14 @@ are no sources provided by any <code>deps</code>).</p>
 <tr>
 <td align="center">name</td>
 <td align="center">A unique name for this target.</td>
-<td align="center"><!-- raw HTML omitted -->Name<!-- raw HTML omitted --></td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#name">Name</a></td>
 <td align="center">required</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td align="center">hugo</td>
-<td align="center">The <!-- raw HTML omitted -->hugo<!-- raw HTML omitted --> executable (in the host configuration) to use to build Hugo websites.</td>
-<td align="center"><!-- raw HTML omitted -->Label<!-- raw HTML omitted --></td>
+<td align="center">The <code>hugo</code> executable (in the host configuration) to use to build Hugo websites.</td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#labels">Label</a></td>
 <td align="center">optional</td>
 <td align="center">None</td>
 </tr>
@@ -212,14 +231,15 @@ are no sources provided by any <code>deps</code>).</p>
 
 </section>
 
-  
-    
+      
+        
 <section class="home-page-stardoc">
-    <!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+    <!-- Generated with Stardoc: http://skydoc.bazel.build -->
+<p><a name="#hugo_website"></a></p>
 <h2 id="hugo_website">hugo_website</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+hugo_website(<a href="#hugo_website-name">name</a>, <a href="#hugo_website-deps">deps</a>, <a href="#hugo_website-srcs">srcs</a>)
+</pre>
 <p>A simple rule which builds a Hugo website with the <code>hugo</code> command. The output
 directory is named the same as the rule&rsquo;s name attribute.</p>
 <p>A <code>hugo_website</code>'s Bazel package is taken to be the Hugo website&rsquo;s root
@@ -241,21 +261,21 @@ should be a siblings of its Hugo top-level files &amp; directories (e.g.,
 <tr>
 <td align="center">name</td>
 <td align="center">A unique name for this target.</td>
-<td align="center"><!-- raw HTML omitted -->Name<!-- raw HTML omitted --></td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#name">Name</a></td>
 <td align="center">required</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td align="center">deps</td>
-<td align="center">A list of targets providing <!-- raw HTML omitted -->HugoSourcesInfo<!-- raw HTML omitted --> (e.g. <!-- raw HTML omitted -->hugo_library<!-- raw HTML omitted -->s and <!-- raw HTML omitted -->hugo_import<!-- raw HTML omitted -->s) whose sources should be included in this <!-- raw HTML omitted -->hugo_website<!-- raw HTML omitted -->.</td>
-<td align="center"><!-- raw HTML omitted -->List of labels<!-- raw HTML omitted --></td>
+<td align="center">A list of targets providing <code>HugoSourcesInfo</code> (e.g. <code>hugo_library</code>s and <code>hugo_import</code>s) whose sources should be included in this <code>hugo_website</code>.</td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#labels">List of labels</a></td>
 <td align="center">optional</td>
 <td align="center">[]</td>
 </tr>
 <tr>
 <td align="center">srcs</td>
-<td align="center">A list of files to be included in the website.<!-- raw HTML omitted --><!-- raw HTML omitted -->Be aware that the rule will fail if a source file given here is located outside of this <!-- raw HTML omitted -->hugo_website<!-- raw HTML omitted -->'s package or subpackages.<!-- raw HTML omitted --><!-- raw HTML omitted -->A <!-- raw HTML omitted -->glob()<!-- raw HTML omitted --> expression may be an appropriate value for this attribute, but be aware that Bazel <!-- raw HTML omitted -->glob<!-- raw HTML omitted -->s do not reach into Bazel subpackages.</td>
-<td align="center"><!-- raw HTML omitted -->List of labels<!-- raw HTML omitted --></td>
+<td align="center">A list of files to be included in the website.<br><br>Be aware that the rule will fail if a source file given here is located outside of this <code>hugo_website</code>'s package or subpackages.<br><br>A <code>glob()</code> expression may be an appropriate value for this attribute, but be aware that Bazel <code>glob</code>s do not reach into Bazel subpackages.</td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#labels">List of labels</a></td>
 <td align="center">optional</td>
 <td align="center">[]</td>
 </tr>
@@ -264,14 +284,15 @@ should be a siblings of its Hugo top-level files &amp; directories (e.g.,
 
 </section>
 
-  
-    
+      
+        
 <section class="home-page-stardoc">
-    <!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+    <!-- Generated with Stardoc: http://skydoc.bazel.build -->
+<p><a name="#local_hugo_repository"></a></p>
 <h2 id="local_hugo_repository">local_hugo_repository</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+local_hugo_repository(<a href="#local_hugo_repository-name">name</a>)
+</pre>
 <p>Searches the system <code>PATH</code> for a <code>hugo</code> executable. If it is not found, then this rule fails. If it is found, then this executable is symlinked into the root of this external repository. Additionally, a <code>hugo_toolchain</code> (labeled <code>//:hugo_toolchain</code>) is synthesized in the root package of this external repository to wrap this executable symlink. This toolchain can be registered with the helper macro <code>//:defs.bzl%register_hugo_toolchain</code>.</p>
 <p><strong>ATTRIBUTES</strong></p>
 <table>
@@ -288,7 +309,7 @@ should be a siblings of its Hugo top-level files &amp; directories (e.g.,
 <tr>
 <td align="center">name</td>
 <td align="center">A unique name for this repository.</td>
-<td align="center"><!-- raw HTML omitted -->Name<!-- raw HTML omitted --></td>
+<td align="center"><a href="https://bazel.build/docs/build-ref.html#name">Name</a></td>
 <td align="center">required</td>
 <td align="center"></td>
 </tr>
@@ -297,7 +318,10 @@ should be a siblings of its Hugo top-level files &amp; directories (e.g.,
 
 </section>
 
-  
+      
+      </article>
+    </div>
+  </div>
 </main>
 
 

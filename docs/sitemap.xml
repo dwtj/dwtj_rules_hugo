@@ -7,10 +7,6 @@
   </url>
   
   <url>
-    <loc>https://dwtj.github.io/dwtj_rules_hugo/</loc>
-  </url>
-  
-  <url>
     <loc>https://dwtj.github.io/dwtj_rules_hugo/hugo_import/</loc>
   </url>
   
@@ -28,6 +24,10 @@
   
   <url>
     <loc>https://dwtj.github.io/dwtj_rules_hugo/local_hugo_repository/</loc>
+  </url>
+  
+  <url>
+    <loc>https://dwtj.github.io/dwtj_rules_hugo/</loc>
   </url>
   
   <url>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>dwtj_rules_hugo</title>
+    <title>Somebody&#39;s Hugo Bazel Rules</title>
     <link>https://dwtj.github.io/dwtj_rules_hugo/</link>
-    <description>Recent content on dwtj_rules_hugo</description>
+    <description>Recent content on Somebody&#39;s Hugo Bazel Rules</description>
     <generator>Hugo -- gohugo.io</generator>
     
 	<atom:link href="https://dwtj.github.io/dwtj_rules_hugo/index.xml" rel="self" type="application/rss+xml" />
@@ -15,8 +15,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://dwtj.github.io/dwtj_rules_hugo/hugo_import/</guid>
-      <description>hugo_import ATTRIBUTES
-   Name Description Type Mandatory Default     name A unique name for this target. Name required    add_front_matter If this is non-empty, then the imported file is actually a new file whose contents are created by prepending this string (plus a newline) to the beginning of the srcfile&amp;rsquo;s contents. The new file will be placed in this target&amp;rsquo;s package and with this target&amp;rsquo;s name.</description>
+      <description>hugo_import  hugo_import(name, add_front_matter, path, src)  ATTRIBUTES
+   Name Description Type Mandatory Default     name A unique name for this target. Name required    add_front_matter If this is non-empty, then the imported file is actually a new file whose contents are created by prepending this string (plus a newline) to the beginning of the src file&amp;rsquo;s contents. The new file will be placed in this target&amp;rsquo;s package and with this target&amp;rsquo;s name.</description>
     </item>
     
     <item>
@@ -25,9 +25,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://dwtj.github.io/dwtj_rules_hugo/hugo_library/</guid>
-      <description>hugo_library A hugo_library represents a Hugo website fragment. It is essentially a collection of Hugo source files and their corresponding paths relative to a Hugo website root.
+      <description>hugo_library  hugo_library(name, deps, srcs)  A hugo_library represents a Hugo website fragment. It is essentially a collection of Hugo source files and their corresponding paths relative to a Hugo website root.
 A hugo_library target lets you wrap multiple related source files, organize them into a file hierarchy, and provide them as one to hugo_website targets.
-Note that this rule is not involved in building Hugo websites or website fragments. It is only a collection of Hugo website source files.</description>
+Note that this rule is not involved in building Hugo websites or website fragments.</description>
     </item>
     
     <item>
@@ -36,8 +36,9 @@ Note that this rule is not involved in building Hugo websites or website fragmen
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://dwtj.github.io/dwtj_rules_hugo/hugo_toolchain/</guid>
-      <description>hugo_toolchain ATTRIBUTES
-   Name Description Type Mandatory Default     name A unique name for this target. Name required    hugo The hugoexecutable (in the host configuration) to use to build Hugo websites. Label optional None    </description>
+      <description>
+hugo_toolchain  hugo_toolchain(name, hugo)  ATTRIBUTES
+   Name Description Type Mandatory Default     name A unique name for this target. Name required    hugo The hugo executable (in the host configuration) to use to build Hugo websites. Label optional None    </description>
     </item>
     
     <item>
@@ -46,10 +47,8 @@ Note that this rule is not involved in building Hugo websites or website fragmen
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://dwtj.github.io/dwtj_rules_hugo/hugo_website/</guid>
-      <description>hugo_website A simple rule which builds a Hugo website with the hugo command. The output directory is named the same as the rule&amp;rsquo;s name attribute.
-A hugo_website&#39;s Bazel package is taken to be the Hugo website&amp;rsquo;s root directory. This means that the Bazel BUILD file declaring the hugo_website should be a siblings of its Hugo top-level files &amp;amp; directories (e.g., config.toml, content/, layouts/, etc).
-ATTRIBUTES
-   Name Description Type Mandatory Default     name A unique name for this target.</description>
+      <description>hugo_website  hugo_website(name, deps, srcs)  A simple rule which builds a Hugo website with the hugo command. The output directory is named the same as the rule&amp;rsquo;s name attribute.
+A hugo_website&#39;s Bazel package is taken to be the Hugo website&amp;rsquo;s root directory. This means that the Bazel BUILD file declaring the hugo_website should be a siblings of its Hugo top-level files &amp;amp; directories (e.g., config.toml, content/, layouts/, etc).</description>
     </item>
     
     <item>
@@ -58,7 +57,7 @@ ATTRIBUTES
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://dwtj.github.io/dwtj_rules_hugo/local_hugo_repository/</guid>
-      <description>local_hugo_repository Searches the system PATH for a hugo executable. If it is not found, then this rule fails. If it is found, then this executable is symlinked into the root of this external repository. Additionally, a hugo_toolchain (labeled //:hugo_toolchain) is synthesized in the root package of this external repository to wrap this executable symlink. This toolchain can be registered with the helper macro //:defs.bzl%register_hugo_toolchain.
+      <description>local_hugo_repository  local_hugo_repository(name)  Searches the system PATH for a hugo executable. If it is not found, then this rule fails. If it is found, then this executable is symlinked into the root of this external repository. Additionally, a hugo_toolchain (labeled //:hugo_toolchain) is synthesized in the root package of this external repository to wrap this executable symlink. This toolchain can be registered with the helper macro //:defs.bzl%register_hugo_toolchain.
 ATTRIBUTES
    Name Description Type Mandatory Default     name A unique name for this repository.</description>
     </item>
