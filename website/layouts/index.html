@@ -1,5 +1,13 @@
 {{ define "main" }}
 <main class="container">
-  <h2>Welcome to dwtj_rules_hugo</h2>
+  <nav id="home-page-toc">
+    {{ range .Pages }}
+    <li><a href="#{{ .Title }}"><code>{{ .Title }}</code></a></li>
+    {{ end }}
+  </nav>
+
+  {{ range .Pages }}
+    {{ .Render "home_page_stardoc" }}
+  {{ end }}
 </main>
 {{ end }}
