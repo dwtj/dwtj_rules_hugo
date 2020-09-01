@@ -1,13 +1,21 @@
 {{ define "main" }}
 <main class="container">
-  <nav id="home-page-toc">
-    {{ range .Pages }}
-    <li><a href="#{{ .Title }}"><code>{{ .Title }}</code></a></li>
-    {{ end }}
-  </nav>
+  <div class="row">
+    <div class="col-md-3">
+      <nav id="home-page-toc">
+        {{ range .Pages }}
+        <li><a href="#{{ .Title }}">{{ .Title }}</a></li>
+        {{ end }}
+      </nav>
+    </div>
 
-  {{ range .Pages }}
-    {{ .Render "home_page_stardoc" }}
-  {{ end }}
+    <div class="col-md-9 border-left">
+      <article>
+      {{ range .Pages }}
+        {{ .Render "home_page_stardoc" }}
+      {{ end }}
+      </article>
+    </div>
+  </div>
 </main>
 {{ end }}

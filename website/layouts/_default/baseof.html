@@ -17,6 +17,8 @@
     {{ end }}</title>
   </head>
   <body>
+     {{ partial "github_corner.html" . }}
+
      {{ block "header" . }}
        {{ partial "header.html" . }}
      {{ end }}

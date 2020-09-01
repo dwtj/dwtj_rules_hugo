@@ -1,6 +1,75 @@
-nav#home-page-toc {
-    li {
-        list-style-type: none;
+// Prevent the github corner from being covered up by the navbar in the header.
+// TODO(dwtj): Figure out how to make this selection more precise. (Why doesn't
+//  `:github-corner` work!?)
+a > svg {
+    z-index: 1;
+}
+
+main {
+    padding-top: 1em;
+
+    // This padding helps prevent the footer from covering the main content, as
+    // advised [here](https://stackoverflow.com/a/13365611).
+    padding-bottom: 70px;
+
+    a {
+        color: gray;
+    }
+
+    nav#home-page-toc {
+        li {
+            list-style-type: none;
+            padding-bottom: .2em;
+            font-size: small;
+        }
+        padding-bottom: 2em;
+        text-align:right;
+    }
+
+    article {
+        // NOTE(dwtj): The first element in the Stardoc-generated content is an
+        //  <a> element. Here we set `display: none` to prevent it from taking up
+        //  vertical space.
+        // TODO(dwtj): This selector seems confusing and brittle. Is there a
+        //  better way to select it?
+        section.home-page-stardoc > :first-child {
+            display: none;
+        }
+        section.home-page-stardoc {
+            code {
+                color: black;
+            }
+            // Make attribute names monospace.
+            // TODO(dwtj): Pick a font family that matches Bootstrap's fonts.
+            //th,td:nth-child(1) {
+            //    font-family: "monospace";
+            //}
+            // Make the "Mandatory" column disappear
+            th,td:nth-child(4) {
+                display: none;
+            }
+            // Make the "Default" column disappear.
+            th,td:nth-child(5) {
+                display: none;
+            }
+
+            th,td {
+                padding: .5em;
+                font-size: small;
+                border-top: 1px solid #ddd;
+                border-bottom: 1px solid #ddd;
+
+                // NOTE(dwtj): The Stardoc-generated table elements are compiled
+                //  by Hugo to have inline `align="center'` attributes. We
+                //  override these here.
+                text-align: left !important;
+                vertical-align: top !important;
+            }
+            strong {
+                font-size: small;
+            }
+            padding-bottom: 2em;
+        }
     }
 }
 
@@ -9,40 +78,4 @@ footer {
         font-size: xx-small;
         font-style: italic;
     }
-}
-
-main {
-    // This padding helps prevent the footer from covering the main content, as
-    // advised [here](https://stackoverflow.com/a/13365611).
-    padding-bottom: 70px;
-}
-
-section.home-page-stardoc {
-    h2 {
-        font-family: "monospace";
-    }
-    code {
-        color: black;
-    }
-    // Make attribute names monospace.
-    th,td:nth-child(1) {
-        font-family: "monospace";
-    }
-    // Make the "Mandatory" column disappear
-    th,td:nth-child(4) {
-        display: none;
-    }
-    // Make the "Default" column disappear.
-    th,td:nth-child(5) {
-        display: none;
-    }
-
-    th,td {
-        padding: .5em;
-        border-bottom: 1px solid #ddd;
-        // The Stardoc-generated table elements are compiled by Hugo to have
-        // inline `align="center'` attributes. We override this here.
-        text-align: left !important;
-    }
-    padding-bottom: 3em;
 }
