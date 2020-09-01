@@ -7,12 +7,10 @@ load("//hugo:private/common/providers/HugoWebsiteInfo.bzl", "HugoWebsiteInfo")
 
 _HUGO_TOOLCHAIN_TYPE = "@dwtj_rules_hugo//hugo/toolchains/hugo_toolchain:toolchain_type"
 
-# TODO(dwtj): Consider other ways of archiving the output besides `tar`. How
-#  might the user specify how they want their outputs packaged?
 _HUGO_WEBSITE_DOC_STRINGS = {
 "RULE":
-'''A simple rule which builds a Hugo website with the `hugo` command and then
-archives the output with `tar`.
+'''A simple rule which builds a Hugo website with the `hugo` command. The output
+directory is named the same as the rule's name attribute.
 
 A `hugo_website`'s Bazel package is taken to be the Hugo website's root
 directory. This means that the Bazel `BUILD` file declaring the `hugo_website`
@@ -42,16 +40,19 @@ def _build_script_name(ctx):
 def _server_script_name(ctx):
     return ctx.attr.name + ".hugo_server.sh"
 
-def _website_archive_name(ctx):
-    return ctx.attr.name + ".tar.gz"
+# NOTE(dwtj): WARNING: There is currently a hack in Hugo build script which
+#  only works if the output directory and the source directory are siblings.
+# TODO(dwtj): Consider making that logic more robust.
+def _hugo_output_dir_name(ctx):
+    return ctx.attr.name
+
+def _hugo_src_dir_name(ctx):
+    return ctx.attr.name + ".hugo_source"
 
 def _extract_hugo_exec(ctx):
     return ctx.toolchains[_HUGO_TOOLCHAIN_TYPE] \
               .hugo_toolchain_info \
               .hugo_exec
-
-def _hugo_src_dir_name(ctx):
-    return "{}.hugo_website".format(ctx.attr.name)
 
 # NOTE(dwtj): Here are the high-level steps involved in this rule impl:
 #
@@ -66,8 +67,8 @@ def _hugo_src_dir_name(ctx):
 #     file's location relative to the package which declared this `hugo_website`.
 #  4. We also "place" all source files in `deps` under this directory using
 #     symlinks.
-#  5. We instantiate and run a script which executes `hugo` and `tar`s its
-#     output.
+#  5. We instantiate and run a script which executes `hugo` to build the output
+#     directory.
 #  6. We instantiate a script which executes `hugo server`
 #
 #  Constructing this intermediary Hugo source directory may seem unnecessary.
@@ -124,8 +125,8 @@ def _hugo_website_impl(ctx):
     # Wrap the `symlinks` list in a `depset`.
     symlinks = depset(direct = symlinks)
 
-    # Declare the output archive.
-    website_archive = ctx.actions.declare_file(_website_archive_name(ctx))
+    # Declare the outputs.
+    hugo_output_dir = ctx.actions.declare_directory(_hugo_output_dir_name(ctx))
 
     # Declare, write, and run the build script.
     build_script = ctx.actions.declare_file(_build_script_name(ctx))
@@ -136,7 +137,7 @@ def _hugo_website_impl(ctx):
             "{HUGO_EXEC}": hugo_exec.path,
             # TODO(dwtj): This use of `build_script.dirname` is an ugly hack.
             "{HUGO_SOURCE_DIR}": "{}/{}".format(build_script.dirname, hugo_src_dir_name),
-            "{WEBSITE_ARCHIVE}": website_archive.path,
+            "{HUGO_OUTPUT_DIR}": hugo_output_dir.path,
         },
     )
     ctx.actions.run(
@@ -150,10 +151,10 @@ def _hugo_website_impl(ctx):
             ]
         ),
         outputs = [
-            website_archive,
+            hugo_output_dir,
         ],
         mnemonic = "HugoWebsiteBuild",
-        progress_message = "Building and archiving Hugo website `{}`".format(ctx.label),
+        progress_message = "Building Hugo website `{}`".format(ctx.label),
     )
 
     # Declare and write the server scipt.
@@ -176,7 +177,9 @@ def _hugo_website_impl(ctx):
 
     return [
         DefaultInfo(
-            files = depset([website_archive]),
+            files = depset([
+                hugo_output_dir,
+            ]),
             executable = server_script,
             runfiles = ctx.runfiles(
                 files = [
@@ -186,8 +189,7 @@ def _hugo_website_impl(ctx):
             ),
         ),
         HugoWebsiteInfo(
-            srcs = srcs,
-            website_archive = website_archive,
+            output_dir = hugo_output_dir,
         )
     ]
 

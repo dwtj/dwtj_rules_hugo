@@ -2,18 +2,15 @@
 #
 # - HUGO_EXEC: {HUGO_EXEC}
 # - HUGO_SOURCE_DIR: {HUGO_SOURCE_DIR}
-# - WEBSITE_ARCHIVE: {WEBSITE_ARCHIVE}
+# - HUGO_OUTPUT_DIR: {HUGO_OUTPUT_DIR}
 
 set -e
 
-HUGO_DEFAULT_DESTINATION_DIR="{HUGO_SOURCE_DIR}/public"
-EXECROOT="$PWD"
+# TODO(dwtj): This hack assumes that the source and output directories are
+#  siblings. Consider making this more robust.
+HUGO_OUTPUT_DIR_BASENAME=$(basename "{HUGO_OUTPUT_DIR}")
+HUGO_OUTPUT_DIR_RELATIVE_TO_SOURCE_DIR="../$HUGO_OUTPUT_DIR_BASENAME"
 
-"{HUGO_EXEC}" --source="{HUGO_SOURCE_DIR}"
-
-cd "$EXECROOT"
-tar --create --gzip \
-    --file "{WEBSITE_ARCHIVE}" \
-    --directory "$HUGO_DEFAULT_DESTINATION_DIR" \
-    .
-
+"{HUGO_EXEC}" \
+    --destination="$HUGO_OUTPUT_DIR_RELATIVE_TO_SOURCE_DIR" \
+    --source="{HUGO_SOURCE_DIR}"
