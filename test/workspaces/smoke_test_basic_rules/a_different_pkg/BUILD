@@ -1,4 +1,7 @@
-exports_files(["some_content.md"], visibility = ["//my_website:__pkg__"])
+exports_files(
+    ["some_content.md"],
+    visibility = ["//visibility:public"],
+)
 
 # Make a markdown file with just an empty front matter.
 genrule(

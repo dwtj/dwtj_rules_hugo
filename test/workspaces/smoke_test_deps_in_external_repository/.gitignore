@@ -1,0 +1,4 @@
+bazel-bin
+bazel-out
+bazel-smoke_test_deps_in_external_repository
+bazel-testlogs

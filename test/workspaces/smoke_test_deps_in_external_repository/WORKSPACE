@@ -1,4 +1,4 @@
-workspace(name = "smoke_test_basic_rules")
+workspace(name = "smoke_test_deps_in_external_repository")
 
 # CONFIGURE `@dwtj_rules_hugo` ################################################
 
@@ -14,3 +14,10 @@ local_hugo_repository(name = "local_hugo")
 load("@local_hugo//:defs.bzl", "register_hugo_toolchain")
 
 register_hugo_toolchain()
+
+# CONFIGURE `@my_external_repository` #########################################
+
+local_repository(
+    name = "my_external_repository",
+    path = "../smoke_test_basic_rules",
+)
