@@ -1,11 +1,11 @@
 workspace(name = "smoke_test_markdown_deps")
 
+# CONFIGURE `@dwtj_rules_hugo` ###############################################
+
 local_repository(
     name = "dwtj_rules_hugo",
     path = "../../..",
 )
-
-# CONFIGURE `@dwtj_rules_hugo` ###############################################
 
 load("@dwtj_rules_hugo//hugo:repositories.bzl", "local_hugo_repository")
 
@@ -21,9 +21,9 @@ load("@dwtj_rules_hugo//test:workspaces/external_repositories.bzl", "fetch_dwtj_
 
 fetch_dwtj_rules_markdown()
 
-load("@dwtj_rules_markdown//markdown:defs.bzl", "local_markdownlint_external_repository")
+load("@dwtj_rules_markdown//markdown:repositories.bzl", "local_markdownlint_repository")
 
-local_markdownlint_external_repository(
+local_markdownlint_repository(
     name = "local_markdownlint",
     config = "@//:.markdownlint.json",
 )
