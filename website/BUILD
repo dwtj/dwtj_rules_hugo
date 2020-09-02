@@ -1,5 +1,9 @@
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
-load("@dwtj_rules_hugo//hugo:defs.bzl", "hugo_website")
+load(
+    "@dwtj_rules_hugo//hugo:defs.bzl",
+    "hugo_website",
+    "hugo_library",
+)
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("//bazel:hugo_library_of_all_stardoc.bzl", "hugo_library_of_all_stardoc")
 
@@ -17,26 +21,22 @@ pkg_tar(
 
 hugo_website(
     name = "gh_pages_website",
-    srcs = glob(
-        include = [
-            "config.toml",
-            "assets/**/*",
-            "layouts/**/*",
-        ],
-        exclude = [
-            "WORKSPACE",
-            "BUILD",
-            "bazel",
-            "bazel-bin",
-            "bazel-out",
-            "bazel-testlogs",
-            "bazel-website",
-            "bazel-dwtj_rules_hugo_github_io",
-        ],
-    ),
+    srcs = ["config.toml"],
     deps = [
+        "gh_pages_theme",
         ":all_stardoc_content",
     ],
+)
+
+hugo_library(
+    name = "gh_pages_theme",
+    srcs = glob([
+        "assets/sass/*",
+        "layouts/**/*"
+    ]),
+    # NOTE(dwtj): This theme is public so that it can be used in my other Bazel
+    #  rules projects.
+    visibility = ["//visibility:public"],
 )
 
 bzl_library(
